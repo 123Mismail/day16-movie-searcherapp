@@ -1,127 +1,56 @@
-import Image from "next/image";
-import MyStyledIcon, { MyIcon } from "./icons/iconNext";
-import TailwindSvg from "./icons/iconNext";
+"use client";
+
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [time, setTime] = useState(0);
+  const [running, setRunning] = useState(false);
+
+  useEffect(() => {
+    let interval:any;
+    if (running) {
+      interval = setInterval(() => {
+        setTime((pre) => pre + 10);
+      }, 10);
+    } else if(!running) {
+       clearInterval(interval)
+    }
+    return () => clearInterval(interval);
+  }, [running]);
+
   return (
-    <div className="grid h-screen lg:grid-cols-3 md:grid-cols-2 text-white p-3 max-w-[1400px] mx-auto">
-      <div className="lg:p-4 p:1 mx-auto bg-black/90">
-        <h1 className="text-5xl font-medium pl-12 pr-12 mt-4 text-center p-4">
-          Portfolio <br /> Templates
-        </h1>
-        <hr className="h-1 bg-black" />
-        <p className="p-4 mt-3 text-center pl-8 pr-8 text-5xl m-3 mb-3  ">
-          Shape Your Dreams throungh
-        </p>
-        <p className="mb-4 text-center mt-5 text-xl">
-          {" "}
-          Nextjs And Tailwind Css
-        </p>
-
-        <div className="text-2xl mx-auto text-center   ml-16 lg:ml-28 mt-8">{<MyIcon />}</div>
-        <p className="text-center mt-6 text-xl">
-          {" "}
-          Explore the beauty of nextjs
-        </p>
-
-        <div className="text-2xl mx-auto w-[100px] mt-6 "><img   src="tailwind.jpeg" alt="" /></div>
-        <p className="text-center mt-6 text-xl">
-          {" "}
-          Explore the beauty of tailwind css
-        </p>
-      </div>
-
-
-
-      
-
-      <div className="bg-white  text-black ">
-        <div className="flex justify-center p-4  ">
-          <div className="pl-8 pr-8 pt-2 pb-2 gap-y-3">
-            <h2 className="text-xl font-medium ">Branding Portfolio making</h2>
-            <h1 className="text-3xl font-medium ">web Designer</h1>
-            <p> this is the ultimate web services platform </p>
-            <button className="px-6 py-2 rounded-lg bg-black/70 mt-4 hover:bg-black text-white">
-              Contact
-            </button>
-          </div>
-          <div className="max-w-[250px]  ">
-            <img className=" rounded-full  " src="p1.jpeg" alt="" />
-          </div>
+    <div className="flex justify-center flex-col items-center h-screen  bg-white">
+      <div className="h-[300px] shadow-blue-900 bg-black max-w-[600px] w-full text-white rounded-lg">
+        <div className="w-full text-2xl font-medium text-white text-center p-3">
+          <h1 className="text-3xl mt-2 font-semibold">Stop Watch</h1>
         </div>
-        <div className="mt-2 ">
-          <h1 className="p-2 text-2xl mb-4 font-medium text-center">
-            Latest Projects{" "}
-          </h1>
-          <div className="grid grid-cols-3 mt-3 font-serif p-1 m-2 gap-4 ">
-            <div className="shadow-2xl">
-              <img src="p4.jpeg" alt="" />
-              <h1 className="font-semibold  pt-2 pl-3">Title</h1>
-              <p className="text-sm ml-3"> description</p>
-            </div>
-            <div className="shadow-2xl">
-              <img src="p4.jpeg" alt="" />
-              <h1 className="font-semibold   mt-2 ml-3"> Title</h1>
-              <p className="text-sm ml-3"> description</p>
-            </div>
-            <div className="shadow-2xl">
-              <img src="p4.jpeg" alt="" />
-              <h1 className="font-semibold  mt-2 ml-3">Title</h1>
-              <p className="text-sm ml-3"> description</p>
-            </div>
-            <div className="shadow-2xl">
-              <img src="p4.jpeg" alt="" />
-              <h1 className="font-semibold mt-2 ml-3">Title</h1>
-              <p className="text-sm ml-3"> description</p>
-            </div>
-            <div className="shadow-2xl">
-              <img src="p4.jpeg" alt="" />
-              <h1 className="font-semibold  mt-2 ml-3">Title</h1>
-              <p className="text-sm ml-3"> description</p>
-            </div>
-            <div className="shadow-2xl">
-              <img src="p4.jpeg" alt="" />
-              <h1 className="font-semibold  mt-2 ml-3"> Title</h1>
-              <p className="text-sm ml-3"> description</p>
-            </div>
-          </div>
-          <h1 className="text-xl font-medium text-center">
-            its a sample piece of our creativity
-          </h1>
+        <div className="pl-4 pr-4 mt-6 mx-auto   bg-black text-white text-center text-5xl p-4 font-medium max-w-[220px] w-full rounded-lg ">
+          {" "}
+          <span className="mr-3 ">{Math.floor((time /60000) % 60)}:</span>
+          <span className="mr-2 ml-2">
+            {Math.floor((time /1000) % 60)}:
+          </span>
+          <span>{Math.floor((time / 10) % 100)}</span>
         </div>
-      </div>
-      {/* // third col */}
-      <div className="bg-[#80d3e1]   gap-4">
-        <div>
-          <div className=" gap-2 ml-2 mr-2 grid grid-cols-2 m-4 mx-auto ">
-            <div className="max-w-200px shadow-2xl">
-              <img src="card2.jpeg" alt="" />
-            </div>
-            <div className="max-w-200px shadow-2xl">
-              <img src="card3.jpeg" alt="" />
-            </div>
-          </div>
-          {/* 2nd */}
-          <div>
-            <div className=" gap-2    pt-6  grid grid-cols-1   ">
-              <div className="   mx-auto shadow-2xl">
-                <img className="w-[440px]" src="card1.jpeg" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 3rd  */}
-
-        <div className="   pt-4">
-          <div className="gap-2 ml-2 mr-2 grid grid-cols-2 m-4 mx-auto">
-            <div className="shadow-2xl ">
-              <img src="p1.jpeg" alt="" />
-            </div>
-            <div className="shadow-2xl">
-              <img src="p1.jpeg" alt="" />
-            </div>
-          </div>
+        <div className="w-full mx-auto text-center pl-4 pr-4  mt-6">
+          <button
+            className="px-4 py-2 rounded-lg  hover:bg-green-400 hover:px-5 hover:py-3 cursor-pointer bg-green-600 text-lg font-medium text-white"
+            onClick={() => setRunning(true)}
+          >
+            start
+          </button>
+          <button
+            className="px-4 py-2 rounded-lg hover:px-5 hover:py-3 cursor-pointer font-medium bg-red-600 text-lg ml-2 mr-2 text-white"
+            onClick={() => setRunning(false)}
+          >
+            stop
+          </button>
+          <button
+            className="px-4 py-2 rounded-lg cursor-pointer hover:px-5 hover:py-3 font-medium bg-blue-600 text-lg text-white"
+            onClick={() => setTime(0)}
+          >
+            reset
+          </button>
         </div>
       </div>
     </div>
