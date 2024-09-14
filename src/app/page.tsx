@@ -1,13 +1,12 @@
 
-import UnitConverterComponent from '@/components/UnitConvertor'
-import UnitConvertor from '@/components/UnitConvertor'
+ 
 import React from 'react'
+import HTMLpreviwer from './components/HTMLpreviwer'
 
 function page() {
   return (
     <div> 
-      {/* <UnitConverterComponent/> */}
-      <UnitConverterComponent/>
+     <HTMLpreviwer/>
     </div>
   )
 }
