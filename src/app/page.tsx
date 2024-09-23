@@ -1,12 +1,15 @@
 
  
+import Loader from '@/components/loader'
+import MovieSearchApp from '@/components/movieSearchApp'
 import React from 'react'
-import HTMLpreviwer from './components/HTMLpreviwer'
+ 
 
 function page() {
   return (
     <div> 
-     <HTMLpreviwer/>
+    
+    <MovieSearchApp/>
     </div>
   )
 }
